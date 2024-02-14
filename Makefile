@@ -1,10 +1,10 @@
 ##		SOURCE FILES	###
-HEADER		= 	./main.h
+HEADER		= 	./inc/main.h
 BUILD_DIR	=	./build
-SRC_DIR 	= 	./
-vpath %.c ${SRCS_DIR}
+SRC_DIR 	= 	./src
+vpath %.c ${SRC_DIR}
 
-SRCS 		=	main.c input.c analgo.c
+SRCS 		=	main.c utils.c
 OBJS		=	${SRCS:%.c=$(BUILD_DIR)/%.o}
 
 ###		DEFINITIONS		###
@@ -27,7 +27,7 @@ ${NAME}:	${OBJS} ${HEADER}
 			@echo "Link complete for exec --> \033[4;36;1m${NAME}\033[0m"
 
 clean:
-			@rm -rf ${OBJS}
+			@rm -rf ${BUILD_DIR}
 			@echo "\033[32m${NAME} obj cleaned\033[m"
 
 fclean:		clean

@@ -1,14 +1,17 @@
 # Anagram
-Outputs words made from the rearrangement of the letters of the input  
-Specifications : 
-- Spaces and punctuation are not discarded to handle phrases anagrams  
-- All the letters given in input have to be used in the new words (c pas d chiffres et d lettres)  
-- INPUT : min/max len? only letters? + digits? ascii? extended? unicode?  
-- OUTPUT : in files? hide some (ie. 5 consonant in a row)?  
+Outputs all possible words made from input's letters  
+Doublons are removed but not the input  
+Green print words found in french dictionnary (33k words in ascii)  
+Complexity of factorial (strlen(input)) / factorial (nb of each redodant letters)  
+Dict comparision is not yet optimized at all (around 85s for 720 words on i5 2Ghz 8go LPDDR3)  
+
+## Usage
+`git clone https://github.com/bastienkody/anagram.git && cd anagram && ./script <input>`  
+A file `input_anagram.txt` is generated  
 
 ## Improvement :  
-- Get a dictionnary/listing of all the worlds of a language (gutenberg?). Compare outputs with it to only select real worlds  
-- Same with les noms propres ?  
+- Phrases : compare each word (IFS is sep) to dict
+- Make it faster (indexation : separate dict into files by letter? turn it to a C array? ; shorter dict? )
+- English dict
+- Noms propres ?  
 - Ponctuation handled : discard some ponctuations char ?  
-
-
