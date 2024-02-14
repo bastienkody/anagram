@@ -11,7 +11,10 @@ A file `input_anagram.txt` is generated
 
 ## Improvement :  
 - Phrases : compare each word (IFS is sep) to dict
-- Make it faster (indexation : separate dict into files by letter? turn it to a C array? ; shorter dict? )
+- Make it faster 
+	- indexation : separate dict into files by letter? turn it to a C array (double/triple ptr to store by first letter or even more?)
+	- shorter dict 
+	- comparison by len of words ??  
 - English dict
 - Noms propres ?  
 - Ponctuation handled : discard some ponctuations char ?  
