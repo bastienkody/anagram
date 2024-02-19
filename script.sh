@@ -11,8 +11,8 @@ echo "------------------------"
 cat tmp.txt | sort | uniq > ${1}_anagrams.txt
 
 while  read line ; do
-	echo -n "$line : "
-	grep ^$line$ data/french_dico_utf8.txt > /dev/null && echo -e "\033[1;32m$line\033[m" && match=$((match+1)) || echo "no match"
+	#echo -n "$line : "
+	grep ^$line$ data/french_dico_utf8.txt > /dev/null && echo -e "\033[1;32m$line\033[m" && match=$((match+1)) #|| echo "no match"
 done < ${1}_anagrams.txt
 
 make fclean 1> /dev/null && rm tmp.txt

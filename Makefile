@@ -1,10 +1,12 @@
 ##		SOURCE FILES	###
 HEADER		= 	./inc/main.h
 BUILD_DIR	=	./build
-SRC_DIR 	= 	./src
-vpath %.c ${SRC_DIR}
+SRC_DIR		=	./src
+GNL_DIR		=	./src/gnl
+vpath %.c ${SRC_DIR} ${GNL_DIR}
 
-SRCS 		=	main.c utils.c
+SRCS 		=	main.c utils.c read_dico.c\
+				get_next_line.c get_next_line_utils.c
 OBJS		=	${SRCS:%.c=$(BUILD_DIR)/%.o}
 
 ###		DEFINITIONS		###

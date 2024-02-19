@@ -1,9 +1,5 @@
 #include "../inc/main.h"
 
-// deal with french dico (accent + comparisaions)
-// + get rid of doublon (sort + uniq via bash)
-// accents de french dico
-
 //	overflow in factorial calculation if len >= 21
 long long unsigned int	facto(int n)
 {
