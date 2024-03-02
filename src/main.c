@@ -34,7 +34,7 @@ int	main(int argc, char ** argv, __attribute__((unused))char ** envp)
 {
 	unsigned long long int	len;
 	unsigned long long int	net_words_nb;
-	char					**dico;
+	char					**dico = NULL;
 	int						matches = 0;
 
 	if (!input_prep(argc, ++argv, &len, &net_words_nb) || (printf("uploading french dico ...\n") && !(dico = get_a_dico())))
