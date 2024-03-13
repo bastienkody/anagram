@@ -37,12 +37,21 @@ int	main(int argc, char ** argv, __attribute__((unused))char ** envp)
 	char					**dico = NULL;
 	int						matches = 0;
 
-	if (!input_prep(argc, ++argv, &len, &net_words_nb) || (printf("uploading french dico ...\n") && !(dico = get_a_dico())))
-		return (2);
+	if (!(dico = get_a_dico()))
+		printf("Dico is null from main")
 
-	printf("french dico uploaded.\nanagrams generation ...\n\n");
-	gen_word(*argv, 0, len - 1, dico, &matches);
-	printf("\nmatches found : %i\n", matches);
+
+
+
+
+
+
+
+	//if (!input_prep(argc, ++argv, &len, &net_words_nb) || (printf("uploading french dico ...\n") && !(dico = get_a_dico())))
+		//return (2);
+	//printf("french dico uploaded.\nanagrams generation ...\n\n");
+	//gen_word(*argv, 0, len - 1, dico, &matches);
+	//printf("\nmatches found : %i\n", matches);
 
 	return (free_dico(dico), 0);
 }
