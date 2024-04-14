@@ -1,6 +1,16 @@
 #ifndef MAIN_H
 # define MAIN_H
 
+//	CPP libs
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <map>
+
+#include "../src/Dico.hpp"
+class Dico;
+
 /*	libs includes	*/
 #include <stdio.h>
 #include <stdbool.h>
@@ -9,7 +19,8 @@
 #include <ctype.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "get_next_line.h"
+
+typedef unsigned long long int uint_ll;
 
 /*	data	*/
 #define DICO_PATH "data/french_dico_utf8.txt"
@@ -20,16 +31,7 @@
 # define FILE_PB "Cannot open/create file with name: "
 
 /*	functions prototypes	*/
-bool	input_prep(int argc, char **argv, unsigned long long int *len, unsigned long long int *net_words_nb);
-int		get_a_file_fd(void);
-
-/*	algo	*/
-void	gen_word(char *s, int start, int end, char **dico, int *matches);
-
-/*	dico	*/
-bool	search_in_dico(char **dico, char *entry);
-void	print_dico(char **dico);
-void	free_dico(char **dico);
-char	**get_a_dico(void);
+bool	input_prep(int argc, char **argv, uint_ll *len, uint_ll *net_words_nb);
+void	gen_word(char *s, int start, int end, Dico *dico, uint_ll *matches);
 
 #endif

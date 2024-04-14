@@ -1,21 +1,19 @@
 ##		SOURCE FILES	###
-HEADER		= 	./inc/main.h
+HEADER		= 	./inc/main.hpp
 BUILD_DIR	=	./build
 SRC_DIR		=	./src
-GNL_DIR		=	./src/gnl
-vpath %.c ${SRC_DIR} ${GNL_DIR}
+vpath %.cpp ${SRC_DIR}
 
-SRCS 		=	main.c utils.c read_dico.c\
-				get_next_line.c get_next_line_utils.c
-OBJS		=	${SRCS:%.c=$(BUILD_DIR)/%.o}
+SRCS 		=	main.cpp Dico.cpp utils.cpp
+OBJS		=	${SRCS:%.cpp=$(BUILD_DIR)/%.o}
 
 ###		DEFINITIONS		###
 NAME		=	anag
-CC			=	cc
+CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 ###		RULES		###
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: %.cpp
 			@mkdir -p $(dir $@)
 			@echo "\033[32m\c"
 			${CC} ${CFLAGS} -c $< -o $@
