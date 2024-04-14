@@ -22,8 +22,8 @@ class Dico;
 
 typedef unsigned long long int uint_ll;
 
-/*	data	*/
 #define DICO_PATH "data/french_dico_utf8.txt"
+#define SEP "##################################################################"
 
 /*	Error msg	*/
 # define BADARG "Expected a non empty single argument (use quotes if needed)"
@@ -32,6 +32,5 @@ typedef unsigned long long int uint_ll;
 
 /*	functions prototypes	*/
 bool	input_prep(int argc, char **argv, uint_ll *len, uint_ll *net_words_nb);
-void	gen_word(char *s, int start, int end, Dico *dico, uint_ll *matches);
 
 #endif

@@ -12,7 +12,6 @@ void	swap(char *a, char *b)
 /*	anagramme algo	*/
 void	gen_word(char *s, int start, int end, Dico *dico, uint_ll *matches)
 {
-	
 	if (start == end && dico->searchStr(s))
 	{
 		++(*matches);
@@ -39,8 +38,9 @@ int main(int argc, char **argv)
 	if (nomsCommuns->init(DICO_PATH) == false) {return 2;}
 	else	{std::cout << "Dico noms communs ready" << std::endl;}
 
+	std::cout << SEP << std::endl;
 	gen_word(*argv, 0, len - 1, nomsCommuns, &matches);
-	std::cout << "matches:\t" << matches << std::endl;
+	std::cout << SEP << std::endl << "matches:\t" << matches << std::endl;
 
 	delete nomsCommuns;
 	return 0;

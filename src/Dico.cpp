@@ -10,11 +10,23 @@ bool	Dico::init(const std::string & filename)
 		return false;
 
 	for (char i = 'A'; i <= 'Z' ; ++i)
-		_data.insert(std::make_pair(i, std::vector<std::string>()));
-
+	{
+		for (char j = 'A'; i <= 'Z' ; ++j)
+		{
+			std::string	tmp;
+			tmp+=i; tmp+=j;
+			_data.insert(std::make_pair(tmp, std::vector<std::string>()));
+		}
+	}
+// cas ou entry fait un seul char (ie: a, y)
 	std::string	entry;
 	while(std::getline(_infile, entry))
-		_data[toupper(entry[0])].push_back(entry);
+	{
+		std::string	id(entry.begin(), entry.begin() +1);
+		for (std::string::iterator it = id.begin(); it != id.end(); ++it)
+			*it = toupper(*it);
+		_data[id].push_back(entry);
+	}
 
 	_infile.close();
 	return true;
@@ -22,7 +34,13 @@ bool	Dico::init(const std::string & filename)
 
 bool	Dico::searchStr(const std::string & str)
 {
-	std::vector<std::string>	vect = _data[toupper(str[0])];
+	if (str.size() > 1)
+		std::string	tmp(str.begin(), str.end());
+	else
+	{
+		std::string	tmp = ;
+	}
+	std::vector<std::string>	vect = _data[tmp];
 
 	if ( std::find(vect.begin(), vect.end(), str) != vect.end() )
 		return true;
@@ -31,7 +49,7 @@ bool	Dico::searchStr(const std::string & str)
 
 void	Dico::printAll() const
 {
-	for (std::map<char, std::vector<std::string> >::const_iterator itMap = _data.begin(); itMap != _data.end(); ++itMap)
+	for (std::map<std::string, std::vector<std::string> >::const_iterator itMap = _data.begin(); itMap != _data.end(); ++itMap)
 	{
 		std::cout << "####\t" << itMap->first << "\t####" << std::endl;
 		for (std::vector<std::string>::const_iterator itVect = itMap->second.begin(); itVect != itMap->second.end(); ++itVect)

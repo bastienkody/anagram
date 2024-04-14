@@ -37,8 +37,8 @@ class Dico
 
 	private:
 
-		std::ifstream								_infile;
-		std::map<char, std::vector<std::string> >	_data;
+		std::ifstream										_infile;
+		std::map<std::string, std::vector<std::string> >	_data;
 
 };
 
