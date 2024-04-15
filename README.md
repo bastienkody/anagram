@@ -10,8 +10,16 @@ Comparision has been optimized using cpp map and vector, binaryserach but is sti
 
 `./anag input`
 
+Might not work on not-unix system.  
+Needs c/c++ libs and make (makefile tools)
+
 ## Illustrations
 
 ![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/pirates.png)
 ![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/carabine.png)
 ![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/abcdefghi.png)
+
+## To do
+Set some flags to stop generating words:  
+more than 3-4 consecutives vowels or consonants it might stop these serquence and jump to next  
+ie. barista, when it reach brsaait there is no possibility for any brs*** so it might stop that sequence and directly jump to brtaais (wich is also bad), so jump to next etc
