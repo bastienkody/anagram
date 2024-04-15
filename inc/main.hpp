@@ -23,6 +23,7 @@ class Dico;
 typedef unsigned long long int uint_ll;
 
 #define DICO_PATH "data/french_dico_utf8.txt"
+#define PRENOMS_PATH "data/prenoms2.txt"
 #define SEP "##################################################################"
 
 /*	Error msg	*/

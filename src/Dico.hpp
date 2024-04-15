@@ -40,6 +40,8 @@ class Dico
 		std::ifstream										_infile;
 		std::map<std::string, std::vector<std::string> >	_data;
 
+		std::string	extractFirstTwoCharUpper(std::string src);
+
 };
 
 #endif
