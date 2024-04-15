@@ -15,7 +15,6 @@ std::string	Dico::extractFirstTwoCharUpper(std::string src)
 			ret+= src[0];
 	ret[0] = toupper(ret[0]);
 	ret[1] = toupper(ret[1]);
-	//std::cout << "ret:" << ret << std::endl;
 	return ret;
 }
 
@@ -25,7 +24,6 @@ bool	Dico::init(const std::string & filename)
 	if (_infile.fail())
 		return false;
 
-	//	init map ("AA", "AB", "AC", ... "ZY", "ZZ")
 	for (char i = 'A'; i <= 'Z' ; ++i)
 	{
 		for (char j = 'A'; j <= 'Z' ; ++j)
@@ -36,7 +34,6 @@ bool	Dico::init(const std::string & filename)
 		}
 	}
 
-	//	read dico to fulfill vector
 	std::string	entry;
 	while(std::getline(_infile, entry))
 		_data[extractFirstTwoCharUpper(entry)].push_back(entry);
@@ -49,9 +46,7 @@ bool	Dico::searchStr(const std::string & str)
 {
 	std::vector<std::string>	vect = _data[extractFirstTwoCharUpper(str)];
 
-	if ( std::find(vect.begin(), vect.end(), str) != vect.end() )
-		return true;
-	return false;
+	return std::binary_search(vect.begin(), vect.end(), str) ? true : false;
 }
 
 void	Dico::printAll() const

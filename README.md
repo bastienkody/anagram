@@ -1,20 +1,17 @@
 # Anagram
 Outputs all possible words made from input's letters  
-Doublons are removed but not the input  
-Green print words found in french dictionnary (33k words in ascii)  
+Doublons are removed  
+Checks words in two ref: prenoms (11k) and french common names (336k)  
 Complexity of factorial (strlen(input)) / factorial (nb of each redodant letters)  
-Dict comparision is not yet optimized at all (around 85s for 720 words on i5 2Ghz 8go LPDDR3)  
+Comparision has been optimized using cpp map and vector, binaryserach but is still very long for more than 10 letters inputs  
 
 ## Usage
-`git clone https://github.com/bastienkody/anagram.git && cd anagram && ./script <input>`  
-A file `input_anagram.txt` is generated  
+`git clone https://github.com/bastienkody/anagram.git && cd anagram && make`  
 
-## Improvement :  
-- Phrases : compare each word (IFS is sep) to dict
-- Make it faster 
-	- indexation : separate dict into files by letter? turn it to a C array (double/triple ptr to store by first letter or even more?)
-	- shorter dict 
-	- comparison by len of words ??  
-- English dict
-- Noms propres ?  
-- Ponctuation handled : discard some ponctuations char ?  
+`./anag input`
+
+## Illustrations
+
+![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/pirates.png)
+![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/carabine.png)
+![alt text](https://github.com/bastienkody/anagram/blob/cpp/data/abcdefghi.png)

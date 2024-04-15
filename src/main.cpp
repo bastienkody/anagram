@@ -1,46 +1,37 @@
 #include "../inc/main.hpp"
 
-void	swap(char *a, char *b)
+/*	Next_permutations rearrange input to get the next greater lexycographic 
+	permutation : to get all of them, you might sort it before !
+	It returns false when it cannot get a greater one	*/
+void gen_word(std::string s, std::vector<std::string> & words)
 {
-	char	tmp;
+	std::sort(s.begin(), s.end());
 
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
+	do		{words.push_back(s);}
+	while	(std::next_permutation(s.begin(), s.end()));
 }
 
-/*	anagramme algo	
-	Pour otpi il va falloir : 
-		1 - generer tous les mots dans un [file|vector|container] sans check de dico
-		2 - sort + uniq du container
-			au lieu de sort/uniq a posterio, on peut check avant d'insert si le mot
-			est deja present
-		3 - comparaision du container avec le dico
-	Il faudrait aussi appliquer des filtres a l'etape 1 (ie: ko if 3 consonnes consecutives etc)
-	L'etape 3 doit etre ameliore (ie: si aucun mot en "jod", ne pas chercher "jodi" ou "jodaer" later)
-*/
-void	gen_word(char *s, int start, int end, Dico *nomCommuns, Dico *prenoms, uint_ll *matches)
+std::vector<std::string>	get_matches(std::vector<std::string> & words, Dico *dico)
 {
-	if (start == end && ( nomCommuns->searchStr(s) ||  prenoms->searchStr(s) ) )
-	{
-		++(*matches);
-		write(1, s, strlen(s));
-		write(1, "\n", 1);
-	}
-	else 
-	{
-		for (int i = start; i <= end; i++) 
-		{
-			swap(s + start, s + i);
-			gen_word(s, start + 1, end, nomCommuns, prenoms, matches);
-			swap(s + start, s + i);
-		}
-	}
+	std::vector<std::string>	matches;
+
+	for (std::vector<std::string>::iterator it = words.begin(); it != words.end(); ++it)
+		if (dico->searchStr(*it) == true)
+			matches.push_back(*it);
+	return matches;
+}
+
+void	printMatches(std::vector<std::string> & matches, std::string type)
+{
+	std::cout << type << ": " << matches.size() << " matches." << std::endl;
+	for (std::vector<std::string>::iterator it = matches.begin(); it != matches.end(); ++it)
+		std::cout << *it << std::endl;
+	std::cout << SEP << std::endl;
 }
 
 int main(int argc, char **argv)
 {
-	uint_ll	len, net_words_nb, matches = 0;
+	uint_ll	len, net_words_nb;
 	if (input_prep(argc, ++argv, &len, &net_words_nb) == false) {return 2;}
 
 	Dico	*nomsCommuns = new Dico();
@@ -49,11 +40,17 @@ int main(int argc, char **argv)
 
 	Dico	*prenoms = new Dico();
 	if (prenoms->init(PRENOMS_PATH) == false) {return 2;}
-	else	{std::cout << "Dico prenoms ready" << std::endl;}
+	else	{std::cout << "Dico prenoms ready" << std::endl << SEP << std::endl;}
 
-	std::cout << SEP << std::endl;
-	gen_word(*argv, 0, len - 1, nomsCommuns, prenoms, &matches);
-	std::cout << SEP << std::endl << "matches:\t" << matches << std::endl;
+	std::vector<std::string>	words;
+	gen_word(*argv, words);
+	std::cout << words.size() << " words generated" << std::endl << SEP << std::endl;
+
+	std::vector<std::string>	prenoms_matches = get_matches(words, prenoms);
+	printMatches(prenoms_matches, "Prenoms");
+
+	std::vector<std::string>	noms_matches = get_matches(words, nomsCommuns);
+	printMatches(noms_matches, "Noms communs");
 
 	delete nomsCommuns;
 	delete prenoms;
